@@ -1,4 +1,4 @@
-package com.example.makepizza.presentation.ui.menu.adapters
+package com.example.makepizza.presentation.ui.menu
 
 
 import android.content.Context

@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.makepizza.data.model.ContentCategoriesResponse
-import com.example.makepizza.presentation.ui.menu.ContentFragment
+import com.example.makepizza.presentation.ui.menu.fragments.ContentFragment
 
 class ContentAdapter(fragment: FragmentActivity) : FragmentStateAdapter(fragment) {
     var collection: List<ContentCategoriesResponse> = emptyList()
