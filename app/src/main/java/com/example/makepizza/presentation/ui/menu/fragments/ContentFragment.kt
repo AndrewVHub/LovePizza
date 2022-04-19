@@ -1,4 +1,4 @@
-package com.example.makepizza.presentation.ui.menu
+package com.example.makepizza.presentation.ui.menu.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import com.example.makepizza.R
 import com.example.makepizza.data.model.Product
 import com.example.makepizza.databinding.FragmentContentBinding
+import com.example.makepizza.presentation.ui.menu.VerticalItemDecoration
 import com.example.makepizza.presentation.ui.menu.adapters.MenuAdapter
-import com.example.makepizza.presentation.ui.menu.adapters.VerticalItemDecoration
 
 class ContentFragment(private val data: List<Product>) : Fragment() {
 
