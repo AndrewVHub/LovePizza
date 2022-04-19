@@ -1,4 +1,4 @@
-package com.example.makepizza.presentation.ui.menu.fragments
+package com.example.makepizza.presentation.ui.menu
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,7 +10,6 @@ import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.makepizza.R
 import com.example.makepizza.databinding.FragmentMenuBinding
-import com.example.makepizza.presentation.ui.menu.MenuViewModel
 import com.example.makepizza.presentation.ui.menu.adapters.CategoriesAdapter
 import com.example.makepizza.presentation.ui.menu.adapters.ContentAdapter
 import com.example.makepizza.presentation.ui.menu.adapters.SalesAdapter
