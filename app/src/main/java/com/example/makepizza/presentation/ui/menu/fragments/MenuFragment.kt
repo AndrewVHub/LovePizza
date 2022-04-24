@@ -23,15 +23,23 @@ class MenuFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?): Unit = with(binding) {
         super.onViewCreated(view, savedInstanceState)
-        val adapterSales = SalesAdapter(viewModel.salesList)
+        val adapterSales = SalesAdapter()
+        viewModel.salesList.observe(viewLifecycleOwner){ data ->
+            adapterSales.collection = data
+        }
+
         val adapterCategories = CategoriesAdapter {
             viewPager.currentItem = it
+//            recyclerCategories.smoothScrollToPosition(it)
+
         }
+
         val pagerAdapter = ContentAdapter(requireActivity())
         recyclerCategories.adapter = adapterCategories
         recyclerSales.adapter = adapterSales
+        viewPager.adapter = pagerAdapter
         viewModel.content.observe(viewLifecycleOwner) { data ->
-            adapterCategories.data = data.map { it.title }
+            adapterCategories.collection = data.map { it.title }
             pagerAdapter.collection = data
         }
 
@@ -39,19 +47,14 @@ class MenuFragment : Fragment() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 adapterCategories.selectedItem = position
+
             }
         }
-
-        viewPager.adapter = pagerAdapter
         viewPager.registerOnPageChangeCallback(onPageChangeCallback)
-        viewModel.salesList.observe(viewLifecycleOwner){
-            adapterSales.notifyDataSetChanged()
-        }
 
         swipeRefresh.setOnRefreshListener {
             viewModel.load()
         }
-
         swipeRefresh.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.pink))
         viewModel.action.observe(viewLifecycleOwner) { action ->
             when (action) {

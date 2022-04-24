@@ -20,7 +20,7 @@ class ContentFragment(private val data: List<Product>) : Fragment() {
         val adapterMenu = MenuAdapter()
         recyclerContent.adapter = adapterMenu
         recyclerContent.addItemDecoration(VerticalItemDecoration(requireContext(), R.drawable.item_decoration))
-        adapterMenu.data = data
+        adapterMenu.collection = data
     }
 
     override fun onCreateView(

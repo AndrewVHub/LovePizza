@@ -11,9 +11,14 @@ import com.example.makepizza.data.model.SaleResponse
 import com.example.makepizza.databinding.SalesItemBinding
 import com.example.makepizza.presentation.utils.load
 
-class SalesAdapter(
-    private val data: LiveData<List<SaleResponse>>
-): RecyclerView.Adapter<SalesAdapter.SalesViewHolder>() {
+class SalesAdapter: RecyclerView.Adapter<SalesAdapter.SalesViewHolder>() {
+
+    var collection: List<SaleResponse> = emptyList()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
     inner class SalesViewHolder(view: View) : RecyclerView.ViewHolder(view)  {
         private val binding = SalesItemBinding.bind(view)
         fun bind(item: SaleResponse) = with(binding){
@@ -30,11 +35,11 @@ class SalesAdapter(
     }
 
     override fun onBindViewHolder(holder: SalesViewHolder, position: Int) {
-        data.value?.let{
+        collection.let{
             val item = it[position]
             holder.bind(item)
         }
     }
 
-    override fun getItemCount(): Int = data.value?.size ?: 0
+    override fun getItemCount(): Int = collection.size
 }

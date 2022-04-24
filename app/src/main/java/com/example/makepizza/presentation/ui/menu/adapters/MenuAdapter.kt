@@ -11,7 +11,7 @@ import com.example.makepizza.presentation.utils.load
 
 class MenuAdapter: RecyclerView.Adapter<MenuAdapter.PizzaViewHolder>() {
 
-    var data: List<Product> = emptyList()
+    var collection: List<Product> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -20,7 +20,7 @@ class MenuAdapter: RecyclerView.Adapter<MenuAdapter.PizzaViewHolder>() {
     inner class PizzaViewHolder(view: View) : RecyclerView.ViewHolder(view)  {
         private val binding = MenuItemBinding.bind(view)
         fun bind(item: Product) = with(binding){
-            ivPizza.load(item.imageUrl)
+            ivPizza.load(item.imageUrl,R.drawable.placeholder_icon)
             tvName.text = item.name
             tvDescription.text = item.description
             btnPrice.text = binding.root.context.getString(R.string.ruble_price, item.price.toInt().toString())
@@ -33,11 +33,11 @@ class MenuAdapter: RecyclerView.Adapter<MenuAdapter.PizzaViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MenuAdapter.PizzaViewHolder, position: Int) {
-        data.let{
+        collection.let{
             val item = it[position]
             holder.bind(item)
         }
     }
 
-    override fun getItemCount(): Int = data.size
+    override fun getItemCount(): Int = collection.size
 }

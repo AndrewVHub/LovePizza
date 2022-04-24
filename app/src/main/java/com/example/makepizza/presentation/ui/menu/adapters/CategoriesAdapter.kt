@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.makepizza.R
 import com.example.makepizza.databinding.CategoriesItemBinding
@@ -12,7 +11,7 @@ import kotlin.properties.Delegates
 
 class CategoriesAdapter(private val onClick: (position: Int) -> Unit): RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHolder>() {
 
-    var data: List<String> = emptyList()
+    var collection: List<String> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -20,7 +19,7 @@ class CategoriesAdapter(private val onClick: (position: Int) -> Unit): RecyclerV
 
     var selectedItem by Delegates.observable(-1) { _, old, new ->
         if (old != new) {
-            data.let {
+            collection.let {
                 if (new in it.indices) {
                     notifyItemChanged(old)
                     notifyItemChanged(new)
@@ -52,11 +51,11 @@ class CategoriesAdapter(private val onClick: (position: Int) -> Unit): RecyclerV
     }
 
     override fun onBindViewHolder(holder: CategoriesAdapter.CategoriesViewHolder, position: Int) {
-        data.let{
+        collection.let{
             val item = it[position]
             holder.bind(item, position == selectedItem, position)
         }
     }
 
-    override fun getItemCount(): Int = data.size
+    override fun getItemCount(): Int = collection.size
 }
