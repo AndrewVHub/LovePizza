@@ -9,7 +9,11 @@
         android:id="@+id/menuFragment"
         android:name="com.example.makepizza.presentation.ui.menu.fragments.MenuFragment"
         android:label="fragment_menu"
-        tools:layout="@layout/fragment_menu" />
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_currentProductFragment"
+            app:destination="@id/currentProductFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.makepizza.presentation.ui.profile.ProfileFragment"
@@ -20,4 +24,9 @@
         android:name="com.example.makepizza.presentation.ui.cart.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/currentProductFragment"
+        android:name="com.example.makepizza.presentation.ui.currentproduct.CurrentProductFragment"
+        android:label="fragment_current_product"
+        tools:layout="@layout/fragment_current_product" />
 </navigation>

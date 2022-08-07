@@ -5,30 +5,30 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.makepizza.R
-import com.example.makepizza.data.model.Product
-import com.example.makepizza.databinding.MenuItemBinding
+import com.example.makepizza.data.model.content.Products
+import com.example.makepizza.databinding.ContentItemBinding
 import com.example.makepizza.presentation.utils.load
 
 class MenuAdapter: RecyclerView.Adapter<MenuAdapter.PizzaViewHolder>() {
 
-    var collection: List<Product> = emptyList()
+    var collection: List<Products> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
     inner class PizzaViewHolder(view: View) : RecyclerView.ViewHolder(view)  {
-        private val binding = MenuItemBinding.bind(view)
-        fun bind(item: Product) = with(binding){
-            ivPizza.load(item.imageUrl,R.drawable.placeholder_icon)
-            tvName.text = item.name
-            tvDescription.text = item.description
-            btnPrice.text = binding.root.context.getString(R.string.ruble_price, item.price.toInt().toString())
+        private val binding = ContentItemBinding.bind(view)
+        fun bind(item: Products) = with(binding){
+            image.load(item.imageUrl,R.drawable.placeholder_icon)
+            name.text = item.name
+            description.text = item.description
+            price.text = binding.root.context.getString(R.string.ruble_price, item.price.toInt().toString())
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuAdapter.PizzaViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.menu_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.content_item, parent, false)
         return PizzaViewHolder(view)
     }
 

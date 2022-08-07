@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FBFBFB"
+    tools:context=".presentation.ui.currentproduct.CurrentProductFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="33dp"
+            android:src="@drawable/ic_arrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/image_current_product"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="35dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pizza"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/back_icon"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/name_current_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="27dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/black_light"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/image_current_product"
+            app:layout_constraintStart_toStartOf="@+id/image_current_product"
+            app:layout_constraintTop_toBottomOf="@+id/image_current_product"
+            tools:text="Ветчина и грибы" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/black_light"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/name_current_product"
+            app:layout_constraintStart_toStartOf="@+id/name_current_product"
+            app:layout_constraintTop_toBottomOf="@+id/name_current_product"
+            tools:text="Ветчина, шампиньоны, увеличенная порция моцареллы, томатный соус" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="@+id/description"
+            app:layout_constraintStart_toStartOf="@+id/description"
+            app:layout_constraintTop_toBottomOf="@+id/description">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_small"
+                android:layout_width="88dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:textAlignment="center"
+                android:textColor="@color/pink"
+                android:textSize="13sp"
+                app:chipBackgroundColor="@color/pink_light"
+                app:chipCornerRadius="6dp"
+                tools:text="Маленькая" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_medium"
+                android:layout_width="88dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:textAlignment="center"
+                android:textColor="@color/button_gray_text"
+                android:textSize="13sp"
+                app:chipBackgroundColor="@color/white"
+                app:chipCornerRadius="6dp"
+                tools:text="Средняя" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_big"
+                android:layout_width="88dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@color/button_gray_text"
+                android:textSize="13sp"
+                app:chipBackgroundColor="@color/white"
+                app:chipCornerRadius="6dp"
+                tools:text="Большая" />
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/size_current_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/roboto_light"
+            android:textColor="@color/black_light"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/chip_group"
+            app:layout_constraintTop_toBottomOf="@+id/chip_group"
+            tools:text="Размер" />
+
+        <TextView
+            android:id="@+id/size_value_current_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/black_light"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/size_current_product"
+            app:layout_constraintTop_toBottomOf="@+id/size_current_product"
+            tools:text="25 см" />
+
+        <TextView
+            android:id="@+id/weight_current_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/roboto_light"
+            android:textColor="@color/black_light"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/chip_group"
+            app:layout_constraintStart_toStartOf="@+id/chip_group"
+            app:layout_constraintTop_toBottomOf="@+id/chip_group"
+            tools:text="Вес" />
+
+        <TextView
+            android:id="@+id/weight_value_current_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/black_light"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/weight_current_product"
+            app:layout_constraintTop_toBottomOf="@+id/weight_current_product"
+            tools:text="410 г" />
+
+        <TextView
+            android:id="@+id/price_current_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/roboto_light"
+            android:textColor="@color/black_light"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/chip_group"
+            app:layout_constraintTop_toBottomOf="@+id/chip_group"
+            tools:text="Цена" />
+
+        <TextView
+            android:id="@+id/price_value_current_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/black_light"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/price_current_product"
+            app:layout_constraintTop_toBottomOf="@+id/price_current_product"
+            tools:text="369 ₽" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="27dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/shape_buttom"
+            android:fontFamily="@font/roboto_bold"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/price_value_current_product"
+            tools:text="ДОБАВИТЬ В КОРЗИНУ" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

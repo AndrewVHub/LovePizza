@@ -1,43 +1,40 @@
 package com.example.makepizza.presentation.ui.menu.fragments
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.makepizza.R
 import com.example.makepizza.databinding.FragmentMenuBinding
+import com.example.makepizza.presentation.base.BaseFragment
 import com.example.makepizza.presentation.ui.menu.MenuViewModel
 import com.example.makepizza.presentation.ui.menu.adapters.CategoriesAdapter
-import com.example.makepizza.presentation.ui.menu.adapters.ContentAdapter
 import com.example.makepizza.presentation.ui.menu.adapters.SalesAdapter
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import com.example.makepizza.presentation.ui.menu.adapters.ViewPagerAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
-class MenuFragment : Fragment() {
+@AndroidEntryPoint
+class MenuFragment : BaseFragment<FragmentMenuBinding>(FragmentMenuBinding::inflate) {
 
-    private lateinit var binding: FragmentMenuBinding
-    private val viewModel: MenuViewModel by viewModel()
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?): Unit = with(binding) {
-        super.onViewCreated(view, savedInstanceState)
+    private val viewModel: MenuViewModel by viewModels()
+    override fun FragmentMenuBinding.initialize() {
         val adapterSales = SalesAdapter()
-        viewModel.salesList.observe(viewLifecycleOwner){ data ->
+        viewModel.salesList.observe(viewLifecycleOwner) { data ->
             adapterSales.collection = data
         }
 
         val adapterCategories = CategoriesAdapter {
             viewPager.currentItem = it
 //            recyclerCategories.smoothScrollToPosition(it)
-
         }
 
-        val pagerAdapter = ContentAdapter(requireActivity())
+        val pagerAdapter = ViewPagerAdapter(requireActivity())
+
         recyclerCategories.adapter = adapterCategories
         recyclerSales.adapter = adapterSales
         viewPager.adapter = pagerAdapter
+
         viewModel.content.observe(viewLifecycleOwner) { data ->
             adapterCategories.collection = data.map { it.title }
             pagerAdapter.collection = data
@@ -68,14 +65,8 @@ class MenuFragment : Fragment() {
             }
         }
 
-
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentMenuBinding.inflate(inflater, container, false)
-        return binding.root
+        toolbar.setOnClickListener {
+            findNavController().navigate(MenuFragmentDirections.actionMenuFragmentToCurrentProductFragment())
+        }
     }
 }

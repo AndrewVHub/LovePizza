@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingVertical="16dp"
     android:layout_marginTop="1dp"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:paddingVertical="16dp">
 
     <ImageView
-        android:id="@+id/ivPizza"
+        android:id="@+id/image"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:src="@drawable/pizza"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toStartOf="@+id/tvName"
+        app:layout_constraintEnd_toStartOf="@+id/name"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintHorizontal_weight="1.2"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,45 +24,46 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/tvName"
+        android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:fontFamily="@font/roboto_bold"
-        android:text="@string/ex_namePizza"
         android:textColor="@color/black_light"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_weight="2"
-        app:layout_constraintStart_toEndOf="@+id/ivPizza"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/image"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Ветчина и грибы" />
 
     <TextView
-        android:id="@+id/tvDescription"
+        android:id="@+id/description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto"
-        android:text="@string/ex_description"
         android:textColor="@color/gray"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@+id/tvName"
-        app:layout_constraintStart_toStartOf="@+id/tvName"
-        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+        app:layout_constraintEnd_toEndOf="@+id/name"
+        app:layout_constraintStart_toStartOf="@+id/name"
+        app:layout_constraintTop_toBottomOf="@+id/name"
+        tools:text="Какое то описание сочной пиццы за 5 рублей" />
 
     <Button
-        android:id="@+id/btnPrice"
+        android:id="@+id/price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
         android:fontFamily="@font/roboto"
         android:gravity="center"
-        android:text="от 345 р"
         android:textColor="@color/pink"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tvDescription"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescription"
+        app:layout_constraintEnd_toEndOf="@+id/description"
+        app:layout_constraintTop_toBottomOf="@+id/description"
         app:strokeColor="@color/pink"
-        app:strokeWidth="1dp" />
+        app:strokeWidth="1dp"
+        tools:text="от 345 р" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

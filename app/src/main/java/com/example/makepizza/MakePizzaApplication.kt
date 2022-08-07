@@ -1,16 +1,7 @@
 package com.example.makepizza
 
 import android.app.Application
-import com.example.makepizza.di.*
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.startKoin
+import dagger.hilt.android.HiltAndroidApp
 
-class MakePizzaApplication: Application() {
-    override fun onCreate() {
-        super.onCreate()
-        startKoin {
-            androidContext(this@MakePizzaApplication)
-            modules(listOf(salesModule, pizzaModule, serviceModule, viewmodelModule))
-        }
-    }
-}
+@HiltAndroidApp
+class MakePizzaApplication: Application()

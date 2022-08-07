@@ -4,16 +4,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.updateLayoutParams
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.makepizza.R
-import com.example.makepizza.data.model.SaleResponse
+import com.example.makepizza.data.model.SaleModel
 import com.example.makepizza.databinding.SalesItemBinding
 import com.example.makepizza.presentation.utils.load
 
 class SalesAdapter: RecyclerView.Adapter<SalesAdapter.SalesViewHolder>() {
 
-    var collection: List<SaleResponse> = emptyList()
+    var collection: List<SaleModel> = emptyList()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -21,8 +20,8 @@ class SalesAdapter: RecyclerView.Adapter<SalesAdapter.SalesViewHolder>() {
 
     inner class SalesViewHolder(view: View) : RecyclerView.ViewHolder(view)  {
         private val binding = SalesItemBinding.bind(view)
-        fun bind(item: SaleResponse) = with(binding){
-            ivSales.load(item.imageUrl)
+        fun bind(item: SaleModel) = with(binding){
+            image.load(item.imageUrl)
             itemView.updateLayoutParams{
                 width = (itemView.resources.displayMetrics.widthPixels * 0.8).toInt()
             }

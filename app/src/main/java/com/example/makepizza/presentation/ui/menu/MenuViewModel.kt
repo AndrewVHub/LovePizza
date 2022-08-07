@@ -2,26 +2,23 @@ package com.example.makepizza.presentation.ui.menu
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.makepizza.data.model.*
-import com.example.makepizza.domain.interactor.GetContentCategoriesUseCase
-import com.example.makepizza.domain.interactor.GetSalesUseCase
+import com.example.makepizza.data.model.SaleModel
+import com.example.makepizza.data.model.content.ContentModel
+import com.example.makepizza.presentation.base.BaseViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MenuViewModel(
-    private val getSalesUseCase: GetSalesUseCase,
-    private val getContentCategoriesUseCase: GetContentCategoriesUseCase
-):  ViewModel(){
-    private val _salesList = MutableLiveData<List<SaleResponse>>()
-    val salesList: LiveData<List<SaleResponse>> = _salesList
+@HiltViewModel
+class MenuViewModel @Inject constructor(
+    private val interactor: MenuInteractor
+) : BaseViewModel() {
+    private val _salesList = MutableLiveData<List<SaleModel>>()
+    val salesList: LiveData<List<SaleModel>> = _salesList
 
-    private val _content = MutableLiveData<List<ContentCategoriesResponse>>()
-    val content: LiveData<List<ContentCategoriesResponse>> = _content
-
-
-//    private var titleCategoriesList: List<String>? = emptyList()
-
+    private val _content = MutableLiveData<List<ContentModel>>()
+    val content: LiveData<List<ContentModel>> = _content
 
     private val _action = MutableLiveData<MenuAction>()
     val action: LiveData<MenuAction> = _action
@@ -30,12 +27,17 @@ class MenuViewModel(
         load()
     }
 
-    fun load(){
+    fun load() {
+
+//        load(_content){
+//            interactor.getContent()
+//        }
+
         viewModelScope.launch {
             try {
-                _salesList.postValue(getSalesUseCase.execute())
-                _content.postValue(getContentCategoriesUseCase.execute())
-            }catch (e: Throwable){
+                _salesList.postValue(interactor.getSales())
+                _content.postValue(interactor.getContent())
+            } catch (e: Throwable) {
                 _action.value = MenuAction.ShowError("Нестабильное соединение")
             }
             _action.value = MenuAction.HideLoader
@@ -44,6 +46,6 @@ class MenuViewModel(
 
     sealed class MenuAction {
         object HideLoader : MenuAction()
-        data class ShowError(val errorMessage: String): MenuAction()
+        data class ShowError(val errorMessage: String) : MenuAction()
     }
 }
