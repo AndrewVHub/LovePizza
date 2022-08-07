@@ -8,7 +8,7 @@
   - Single Activity
   - Android Navigation
   - MVVM
-- Dependency Injection Tool: Koin
+- Dependency Injection Tool: Hilt
 - Architecture of the entire application: Clean Architecture 
 - Design: https://www.figma.com/file/3d8t6lZY9HUKjOXfFA4Z0z/Тестовое-задание-Android?node-id=8%3A199
 - API Docs: https://fastapi-pizza.herokuapp.com
